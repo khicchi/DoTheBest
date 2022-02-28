@@ -19,15 +19,26 @@ public class TestBase {
     protected WebDriver driver;
 
     @BeforeEach
-    public void setUpTest(){
+    public void setUpTestMethod(){
+        writeTheBest();
         driver = DriverUtil.getDriver();
         BrowserUtil.turnOnImplicitWaits();
         driver.manage().window().maximize();
     }
 
     @AfterEach
-    public void tearDownTest(){
+    public void tearDownTestMethod(){
         DriverUtil.closeDriver();
+    }
+
+    private void writeTheBest(){
+        System.out.println("  *******  *******  *******  *******");
+        System.out.println("  *     *  *        *           *");
+        System.out.println("  *     *  *        *           *");
+        System.out.println("  *******  *******  *******     *");
+        System.out.println("  *     *  *              *     *");
+        System.out.println("  *     *  *              *     *");
+        System.out.println("  *******  *******  *******     *");
     }
 
 }

@@ -141,4 +141,9 @@ public class BrowserUtil {
     public static void turnOnImplicitWaits() {
         DriverUtil.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
     }
+
+    public static void scrollToEndOfThePage(){
+        JavascriptExecutor js = ((JavascriptExecutor) DriverUtil.getDriver());
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    }
 }

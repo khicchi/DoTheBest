@@ -4,6 +4,7 @@ import net.kicchi.pages.ToDosPage;
 import net.kicchi.utils.BrowserUtil;
 import net.kicchi.utils.ConfigurationReaderUtil;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 
 import java.util.Objects;
@@ -26,5 +27,24 @@ public class TodosTest extends TestBase{
         assertThrows(NoSuchElementException.class,
                 () -> System.out.println(toDosPage.getFilterElementActive().getText()));
         BrowserUtil.turnOnImplicitWaits();
+    }
+
+    @Test
+    public void sampleTest2(){
+        driver.get(Objects.requireNonNull(ConfigurationReaderUtil.getConfiguration())
+                .getMainPageUrl());
+        toDosPage = new ToDosPage();
+        toDosPage.getNewTodoTitleTextBox().click();
+
+        String newTodoTitle = "asbdsab";
+        toDosPage.getNewTodoTitleTextBox().sendKeys(newTodoTitle);
+        toDosPage.getNewTodoTitleTextBox().sendKeys(Keys.ENTER);
+
+        assertEquals(99, toDosPage.getLeftItemCount());
+    }
+
+    @Test
+    public void sampleTest3(){
+
     }
 }
