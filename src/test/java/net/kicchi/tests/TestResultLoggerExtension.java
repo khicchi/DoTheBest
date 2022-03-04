@@ -1,9 +1,12 @@
 package net.kicchi.tests;
 
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
+import net.kicchi.utils.BrowserUtil;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Log4j2
@@ -23,9 +26,12 @@ public class TestResultLoggerExtension implements TestWatcher {
         log.info(context.getTestMethod().get().getName() + " ABORTED");
     }
 
+    @SneakyThrows
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
         //TestWatcher.super.testFailed(context, cause);
         log.error(context.getTestMethod().get().getName() + " FAILED!", cause);
+        String screenshotPath = BrowserUtil.getScreenshot(LocalDateTime.now().toString());
+        log.error("Screenshot: " + screenshotPath);
     }
 }
