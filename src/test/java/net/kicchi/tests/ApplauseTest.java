@@ -33,13 +33,6 @@ Lowest  "<PLAYER_2>" : "<VALUE_2>"
 
     private StatsPage statsPage;
 
-    public static Object[][] provideStringAndExpectedLength() {
-        return new Object[][] {
-                { "Hello World", 11 },
-                { "Foo", 3 }
-        };
-    }
-
     @ParameterizedTest
     @CsvSource({"Receiving,2020,Yds", "Rushing,2021,Att"})
     public void testTopAndMinimum(String statsTabName, String year, String columnName) throws InterruptedException {
