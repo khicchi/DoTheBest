@@ -13,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 import java.util.Optional;
 
 @Log4j2
+@ExtendWith(TestResultLoggerExtension.class)
 public class TestBase {
 
     protected WebDriver driver;

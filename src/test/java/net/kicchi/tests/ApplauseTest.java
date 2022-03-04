@@ -6,6 +6,7 @@ import net.kicchi.pages.ReceivingTab;
 import net.kicchi.pages.RushingTab;
 import net.kicchi.pages.StatsPage;
 import net.kicchi.utils.BrowserUtil;
+import net.kicchi.utils.ConfigurationReaderUtil;
 import net.kicchi.utils.DriverUtil;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -30,9 +31,7 @@ Highest "<PLAYER_1>" : "<VALUE_1>"
 Lowest  "<PLAYER_2>" : "<VALUE_2>"
      */
 
-    private String mainPageUrl = "https://www.nfl.com/";
     private StatsPage statsPage;
-
 
     public static Object[][] provideStringAndExpectedLength() {
         return new Object[][] {
@@ -41,12 +40,10 @@ Lowest  "<PLAYER_2>" : "<VALUE_2>"
         };
     }
 
-
-
     @ParameterizedTest
     @CsvSource({"Receiving,2020,Yds", "Rushing,2021,Att"})
     public void testTopAndMinimum(String statsTabName, String year, String columnName) throws InterruptedException {
-        DriverUtil.getDriver().get(mainPageUrl);
+        DriverUtil.getDriver().get(ConfigurationReaderUtil.getConfiguration().getMainPageUrl());
         statsPage = new StatsPage();
         EColumn targetColumn = Arrays.stream(EColumn.values()).filter(c -> c.getColumnName().equals(columnName)).findFirst().get();
 
