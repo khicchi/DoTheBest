@@ -203,6 +203,11 @@ public class BrowserUtil {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
+    public static WebElement waitForClickablility(By locator, int timeToWaitInSec) {
+        WebDriverWait wait = new WebDriverWait(DriverUtil.getDriver(), Duration.ofSeconds(timeToWaitInSec));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
     public static void clickWithTimeOut(WebElement element, int timeout) {
         for (int i = 0; i < timeout; i++) {
             try {
